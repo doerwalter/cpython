@@ -817,6 +817,10 @@ def singledispatch(func):
         return func
 
     def wrapper(*args, **kw):
+        if not args:
+            raise TypeError(
+                f"{func.__qualname__}() missing 1 required positional argument"
+            )
         return dispatch(args[0].__class__)(*args, **kw)
 
     registry[object] = func
