@@ -571,19 +571,11 @@ class LocaleTextCalendar(TextCalendar):
 
     def formatweekday(self, day, width):
         with different_locale(self.locale):
-            if width >= 9:
-                names = day_name
-            else:
-                names = day_abbr
-            name = names[day]
-            return name[:width].center(width)
+            return super().formatweekday(day, width)
 
     def formatmonthname(self, theyear, themonth, width, withyear=True):
         with different_locale(self.locale):
-            s = month_name[themonth]
-            if withyear:
-                s = "%s %r" % (s, theyear)
-            return s.center(width)
+            return super().formatmonthname(theyear, themonth, width, withyear)
 
 
 class LocaleHTMLCalendar(HTMLCalendar):
